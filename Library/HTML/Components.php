@@ -91,16 +91,11 @@ class Library_HTML_Components
     public static function serverResponse($hostname, $port, $data)
     {
         $header = '<span class="red">Server ' . $hostname . ':' . $port . "</span>\r\n";
-        $return = '';
         if(is_array($data))
         {
-            foreach($data as $string)
-            {
-                $return .= $string . "\r\n";
-            }
-            return $header . htmlentities($return, ENT_NOQUOTES | 0, 'UTF-8') . "\r\n";
+            $data = join("\r\n", $data);
         }
-        return $header . $return . $data . "\r\n";
+        return $header . htmlentities($data, ENT_NOQUOTES | 0, 'UTF-8') . "\r\n";
     }
 
     /**
